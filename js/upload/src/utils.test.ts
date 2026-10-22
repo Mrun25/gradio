@@ -41,6 +41,22 @@ describe("is_valid_mimetype", () => {
 		expect(is_valid_mimetype(null, "anything.xyz", "")).toBe(true);
 	});
 
+	test("accepts audio extensions regardless of the browser-reported mime", () => {
+		const audio_accept =
+			"audio/aac,audio/midi,audio/mpeg,audio/ogg,audio/wav,audio/x-wav,audio/opus,audio/webm,audio/flac,audio/vnd.rn-realaudio,audio/x-ms-wma,audio/x-aiff,audio/amr,audio/*,.ogg,.oga,.opus";
+		// Firefox reports .ogg as application/ogg; Chromium reports audio/ogg
+		expect(is_valid_mimetype(audio_accept, "tone.ogg", "application/ogg")).toBe(
+			true
+		);
+		expect(is_valid_mimetype(audio_accept, "tone.ogg", "audio/ogg")).toBe(true);
+		expect(is_valid_mimetype(audio_accept, "tone.oga", "application/ogg")).toBe(
+			true
+		);
+		expect(
+			is_valid_mimetype(audio_accept, "tone.opus", "application/ogg")
+		).toBe(true);
+	});
+
 	test("accepts a comma-separated string or an array", () => {
 		expect(is_valid_mimetype(".png, .nii.gz", "brain.nii.gz", "")).toBe(true);
 		expect(is_valid_mimetype([".png", ".nii.gz"], "brain.nii.gz", "")).toBe(

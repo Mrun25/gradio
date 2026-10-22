@@ -380,7 +380,7 @@
 			<!-- explicitly listed out audio mimetypes due to iOS bug not recognizing audio/* -->
 			<Upload
 				bind:upload_promise
-				filetype="audio/aac,audio/midi,audio/mpeg,audio/ogg,audio/wav,audio/x-wav,audio/opus,audio/webm,audio/flac,audio/vnd.rn-realaudio,audio/x-ms-wma,audio/x-aiff,audio/amr,audio/*"
+				filetype="audio/aac,audio/midi,audio/mpeg,audio/ogg,audio/wav,audio/x-wav,audio/opus,audio/webm,audio/flac,audio/vnd.rn-realaudio,audio/x-ms-wma,audio/x-aiff,audio/amr,audio/*,.ogg,.oga,.opus"
 				onload={handle_load}
 				bind:dragging
 				bind:uploading
